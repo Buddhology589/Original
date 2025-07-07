@@ -3,91 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chia Sẻ Kiến Thức Phật Học</title>
+    <title>Góc Nhìn Phật Học</title>
     <style>
+        /* Thiết lập cơ bản và reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
+            background-color: #f4f4f4;
             color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fdfdfa;
         }
-        header {
+
+        header, footer {
+            background-color: #333;
+            color: #fff;
             text-align: center;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            padding: 1rem;
         }
-        h1 {
-            color: #2c5282;
-            font-size: 2.5em;
+
+        /* --- Bố cục Flexbox --- */
+     .container {
+            display: flex;
+            flex-direction: row;
+            min-height: 80vh;
         }
-        h2 {
-            color: #2c5282;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+
+     .column {
+            flex: 1;
+            padding: 20px;
+            border-left: 1px solid #ddd;
         }
-       .post-list {
-            list-style-type: none;
-            padding: 0;
-        }
-       .post-list li {
-            margin-bottom: 15px;
+
+     .left-column {
             background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            border-left: none;
         }
-       .post-list li:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+     .right-column {
+            background-color: #f9f9f9;
         }
-       .post-list a {
-            text-decoration: none;
-            color: #3182ce;
-            font-size: 1.2em;
-            font-weight: bold;
+
+     .content-area {
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
-       .post-list a:hover {
-            text-decoration: underline;
+
+        h1, h2 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
         }
-       .post-description {
-            color: #666;
-            margin-top: 5px;
-        }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
-            color: #777;
+
+        /* --- Thiết kế Đáp ứng (Responsive Design) --- */
+        @media (max-width: 768px) {
+        .container {
+                flex-direction: column;
+            }
+
+        .column {
+                border-left: none;
+                border-top: 1px solid #ddd;
+            }
+
+        .left-column {
+                border-top: none;
+            }
         }
     </style>
 </head>
 <body>
-
     <header>
         <h1>Góc Nhìn Phật Học</h1>
-        <p>Tuyển tập các bài kinh và lời dạy được tóm tắt và diễn giải để dễ dàng tiếp cận.</p>
     </header>
 
-    <main>
-        <h2>Danh sách các bài viết</h2>
-        <ul class="post-list">
-            <li>
-                <a href="https://buddhology589.github.io/KinhDoanGiam/" target="_blank">Kinh Đoạn Giảm (Sallekha Sutta)</a>
-                <p class="post-description">Phân tích chi tiết về 44 pháp môn đoạn giảm phiền não, con đường thực tiễn từ chuyển hóa đạo đức đến giải thoát tối hậu.</p>
-            </li>
-            
-            </ul>
+    <main class="container">
+        <div class="column left-column">
+            <h2>Kinh Nguyên Thủy</h2>
+            <div class="content-area" id="kinh-nguyen-thuy-content">
+                </div>
+        </div>
+        <div class="column right-column">
+            <h2>Bài giảng của TL. Thích Thông Lạc</h2>
+            <div class="content-area" id="thich-thong-lac-content">
+                </div>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 - Trang web được tạo với lòng thành kính và mong muốn chia sẻ Chánh pháp.</p>
+        <p>Trang web được xây dựng cho mục đích học tập và nghiên cứu.</p>
     </footer>
 
+    <script>
+        // Chờ cho đến khi toàn bộ cấu trúc HTML của trang đã được tải xong
+        document.addEventListener('DOMContentLoaded', () => {
+            loadContent();
+        });
+
+        /**
+         * Hàm bất đồng bộ để tải nội dung từ các tệp văn bản
+         * và hiển thị chúng trên trang.
+         */
+        async function loadContent() {
+            try {
+                // Định nghĩa đường dẫn đến các tệp nội dung
+                const kinhNguyenThuyPath = 'content/kinh-nguyen-thuy.txt';
+                const thichThongLacPath = 'content/thich-thong-lac.txt';
+
+                // Tải đồng thời cả hai tệp bằng Promise.all để tối ưu hiệu suất
+                const = await Promise.all();
+
+                // Xử lý cột trái
+                if (!responseLeft.ok) {
+                    throw new Error(`Không thể tải tệp: ${kinhNguyenThuyPath}. Trạng thái: ${responseLeft.status}`);
+                }
+                const textLeft = await responseLeft.text();
+                document.getElementById('kinh-nguyen-thuy-content').innerText = textLeft;
+
+                // Xử lý cột phải
+                if (!responseRight.ok) {
+                    throw new Error(`Không thể tải tệp: ${thichThongLacPath}. Trạng thái: ${responseRight.status}`);
+                }
+                const textRight = await responseRight.text();
+                document.getElementById('thich-thong-lac-content').innerText = textRight;
+
+            } catch (error) {
+                // Bắt và ghi lại bất kỳ lỗi nào xảy ra trong quá trình
+                console.error('Đã xảy ra lỗi trong quá trình tải nội dung:', error);
+                
+                // Hiển thị một thông báo lỗi thân thiện cho người dùng
+                const contentAreas = document.querySelectorAll('.content-area');
+                contentAreas.forEach(area => {
+                    area.innerText = 'Xin lỗi, đã có lỗi xảy ra khi tải nội dung. Vui lòng thử lại sau.';
+                    area.style.color = 'red';
+                });
+            }
+        }
+    </script>
 </body>
 </html>
