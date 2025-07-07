@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc Nhìn Phật Học</title>
+    <style>
+        /* Thiết lập cơ bản và reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* --- Bố cục Flexbox --- */
+     .container {
+            display: flex;
+            flex-direction: row;
+            min-height: 80vh;
+        }
+
+     .column {
+            flex: 1;
+            padding: 20px;
+            border-left: 1px solid #ddd;
+        }
+
+     .left-column {
+            background-color: #fff;
+            border-left: none;
+        }
+
+     .right-column {
+            background-color: #f9f9f9;
+        }
+
+     .content-area {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        h1, h2 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* --- Thiết kế Đáp ứng (Responsive Design) --- */
+        @media (max-width: 768px) {
+        .container {
+                flex-direction: column;
+            }
+
+        .column {
+                border-left: none;
+                border-top: 1px solid #ddd;
+            }
+
+        .left-column {
+                border-top: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Góc Nhìn Phật Học</h1>
+    </header>
+
+    <main class="container">
+        <div class="column left-column">
+            <h2>Kinh Nguyên Thủy</h2>
+            <div class="content-area" id="kinh-nguyen-thuy-content">
+                </div>
+        </div>
+        <div class="column right-column">
+            <h2>Bài giảng của TL. Thích Thông Lạc</h2>
+            <div class="content-area" id="thich-thong-lac-content">
+                </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Trang web được xây dựng cho mục đích học tập và nghiên cứu.</p>
+    </footer>
+
+    <script>
+        // Chờ cho đến khi toàn bộ cấu trúc HTML của trang đã được tải xong
+        document.addEventListener('DOMContentLoaded', () => {
+            loadContent();
+        });
+
+        /**
+         * Hàm bất đồng bộ để tải nội dung từ các tệp văn bản
+         * và hiển thị chúng trên trang.
+         */
+        async function loadContent() {
+            try {
+                // Định nghĩa đường dẫn đến các tệp nội dung
+                const kinhNguyenThuyPath = 'content/kinh-nguyen-thuy.txt';
+                const thichThongLacPath = 'content/thich-thong-lac.txt';
+
+                // Tải đồng thời cả hai tệp bằng Promise.all để tối ưu hiệu suất
+                const = await Promise.all();
+
+                // Xử lý cột trái
+                if (!responseLeft.ok) {
+                    throw new Error(`Không thể tải tệp: ${kinhNguyenThuyPath}. Trạng thái: ${responseLeft.status}`);
+                }
+                const textLeft = await responseLeft.text();
+                document.getElementById('kinh-nguyen-thuy-content').innerText = textLeft;
+
+                // Xử lý cột phải
+                if (!responseRight.ok) {
+                    throw new Error(`Không thể tải tệp: ${thichThongLacPath}. Trạng thái: ${responseRight.status}`);
+                }
+                const textRight = await responseRight.text();
+                document.getElementById('thich-thong-lac-content').innerText = textRight;
+
+            } catch (error) {
+                // Bắt và ghi lại bất kỳ lỗi nào xảy ra trong quá trình
+                console.error('Đã xảy ra lỗi trong quá trình tải nội dung:', error);
+                
+                // Hiển thị một thông báo lỗi thân thiện cho người dùng
+                const contentAreas = document.querySelectorAll('.content-area');
+                contentAreas.forEach(area => {
+                    area.innerText = 'Xin lỗi, đã có lỗi xảy ra khi tải nội dung. Vui lòng thử lại sau.';
+                    area.style.color = 'red';
+                });
+            }
+        }
+    </script>
+</body>
+</html>
